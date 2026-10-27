@@ -1,13 +1,15 @@
-import "dotenv/config";
+import dotenv from "dotenv";
 import express from "express";
 import urlRoute from "./routes/url.js";
-import connectToMongoDB from "./connect.js";
+import connectToMongoDB from "./utils/db.js";
 import URL from "./models/url.js";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8001;
 
-connectToMongoDB(process.env.MONGODB_URL).then(() => {
+connectToMongoDB().then(() => {
   console.log("MongoDB connected");
 });
 
